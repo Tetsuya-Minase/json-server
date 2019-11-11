@@ -7,7 +7,11 @@ import { TopModule } from './page/top/top.module';
 import { ListModule } from './page/list/list.module';
 
 import { StoreModule } from '@ngrx/store';
-import { reducer } from './reducer/index.reducer';
+import { reducer } from './reducers/index.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { FetchEffects } from './effects/fetch.effects';
+import { HttpService } from './service/http.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,12 +19,14 @@ import { reducer } from './reducer/index.reducer';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     TopModule,
     ListModule,
-    StoreModule.forRoot({listReducer: reducer})
+    StoreModule.forRoot({listReducer: reducer}),
+    EffectsModule.forRoot([FetchEffects])
   ],
-  providers: [],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

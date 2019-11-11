@@ -16,10 +16,10 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('List component');
+    this.listService.getList();
   }
 
   onClick() {
-    this.listService.getList();
+    this.listService.fetchList();
   }
 }

@@ -1,6 +1,6 @@
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getList, fetchList } from '../../../action/index.action';
+import { getList, fetchList } from '../../../actions/index.action';
 import { Injectable } from '@angular/core';
 import { JsonData } from '../../../../model/JsonData';
 
@@ -21,6 +21,6 @@ export class ListService {
   }
 
   fetchList(): void {
-    this.store.dispatch(fetchList());
+    this.store.dispatch(fetchList({url: 'list'}));
   }
 }
