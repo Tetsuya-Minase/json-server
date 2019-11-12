@@ -12,6 +12,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { FetchEffects } from './effects/fetch.effects';
 import { HttpService } from './service/http.service';
 import { HttpClientModule } from '@angular/common/http';
+import { EditModule } from './page/edit/edit.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,10 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     TopModule,
     ListModule,
+    EditModule,
     StoreModule.forRoot({listReducer: reducer}),
-    EffectsModule.forRoot([FetchEffects])
+    EffectsModule.forRoot([FetchEffects]),
+    BrowserAnimationsModule
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]

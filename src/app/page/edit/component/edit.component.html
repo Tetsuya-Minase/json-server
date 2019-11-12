@@ -1,0 +1,14 @@
+Key-Value<mat-slide-toggle (change)="changeSlideToggle($event)">RawData</mat-slide-toggle>
+<form [formGroup]="formGroup">
+  <label>name: <input type="text" formControlName="name"></label>
+  <ng-container [ngSwitch]="isRawData">
+    <div *ngSwitchCase="true">
+      <label>
+        Raw Data:
+        <textarea formControlName="rawData"></textarea>
+      </label>
+    </div>
+    <div *ngSwitchCase="false">
+    </div>
+  </ng-container>
+</form>
