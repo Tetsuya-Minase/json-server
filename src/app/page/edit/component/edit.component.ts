@@ -10,7 +10,7 @@ import { MatSlideToggleChange } from '@angular/material';
 export class EditComponent implements OnInit {
   readonly formGroup = this.fb.group({
     name: ['', Validators.required],
-    rawData: ['', this.jsonValidator()],
+    rawData: ['', [Validators.required, this.jsonValidator()]],
     keyValueList: this.fb.array([
       this.fb.group({
         ['key0']: ['', Validators.required],
@@ -42,7 +42,7 @@ export class EditComponent implements OnInit {
         JSON.parse(control.value);
         return null;
       } catch (ex) {
-        return { message: control.value };
+        return { jsonValid: control.value };
       }
     };
   }

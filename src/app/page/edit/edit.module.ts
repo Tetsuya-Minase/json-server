@@ -4,9 +4,13 @@ import { EditComponent } from './component/edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditRoutingModule } from './edit-routing.module';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { FormErrorComponent } from '../../common/component/form-error/form-error.component';
 
 @NgModule({
-  declarations: [EditComponent],
+  declarations: [
+    EditComponent,
+    FormErrorComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
