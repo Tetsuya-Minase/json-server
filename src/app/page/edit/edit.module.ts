@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EditComponent } from './component/edit.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditRoutingModule } from './edit-routing.module';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
@@ -9,6 +9,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
   declarations: [EditComponent],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     EditRoutingModule,
     MatSlideToggleModule
