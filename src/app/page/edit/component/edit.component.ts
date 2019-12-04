@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, ValidatorFn, Validators } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material';
+import { EditService } from '../service/edit.service';
 
 @Component({
   selector: 'app-edit',
@@ -20,31 +21,7 @@ export class EditComponent implements OnInit {
   });
   isRawData = false;
 
-  constructor(private readonly fb: FormBuilder) {
-  }
-
-  ngOnInit() {  }
-
-  changeSlideToggle(event: MatSlideToggleChange) {
-    this.isRawData = event.checked;
-  }
-
-  addList() {
-    this.keyValueList.push(this.fb.group({
-      ['key' + this.keyValueList.length]: ['', Validators.required],
-      ['value' + this.keyValueList.length]: ['', Validators.required]
-    }));
-  }
-
-  private jsonValidator(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      try {
-        JSON.parse(control.value);
-        return null;
-      } catch (ex) {
-        return { jsonValid: control.value };
-      }
-    };
+  constructor(private readonly fb: FormBuilder, private readonly service: EditService) {
   }
 
   get name() {
@@ -57,5 +34,40 @@ export class EditComponent implements OnInit {
 
   get keyValueList() {
     return this.formGroup.get('keyValueList') as FormArray;
+  }
+
+  ngOnInit() {
+  }
+
+  changeSlideToggle(event: MatSlideToggleChange) {
+    this.isRawData = event.checked;
+  }
+
+  /**
+   * KeyValueListの追加
+   */
+  addList() {
+    this.keyValueList.push(this.fb.group({
+      ['key' + this.keyValueList.length]: ['', Validators.required],
+      ['value' + this.keyValueList.length]: ['', Validators.required]
+    }));
+  }
+
+  /**
+   *
+   */
+  register() {
+    this.service.registerJsonData(this.name.value, this.rawData.value, this.keyValueList.value);
+  }
+
+  private jsonValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      try {
+        JSON.parse(control.value);
+        return null;
+      } catch (ex) {
+        return { jsonValid: control.value };
+      }
+    };
   }
 }

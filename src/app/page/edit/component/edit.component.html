@@ -1,5 +1,5 @@
-Key-Value
 <mat-slide-toggle (change)="changeSlideToggle($event)">RawData</mat-slide-toggle>
+<button (click)="register()">登録</button>
 <form [formGroup]="formGroup">
   <label>name: <input type="text" formControlName="name"></label>
   <app-form-error [form]="name"></app-form-error>
