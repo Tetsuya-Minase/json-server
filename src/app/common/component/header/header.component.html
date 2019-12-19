@@ -1,3 +1,7 @@
 <header>
-  
+  <ul>
+    <li *ngFor="let link of LINK_LIST">
+      <atom-router-link [linkObject]="link"></atom-router-link>
+    </li>
+  </ul>
 </header>
