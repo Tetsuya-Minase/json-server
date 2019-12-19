@@ -1,0 +1,30 @@
+<mat-slide-toggle (change)="changeSlideToggle($event)">RawData</mat-slide-toggle>
+<button (click)="register()">登録</button>
+<form [formGroup]="formGroup">
+  <label>name: <input type="text" formControlName="name"></label>
+  <app-form-error [form]="name"></app-form-error>
+  <ng-container [ngSwitch]="isRawData">
+    <div *ngSwitchCase="true">
+      <label>
+        Raw Data:
+        <textarea formControlName="rawData"></textarea>
+      </label>
+      <app-form-error [form]="rawData"></app-form-error>
+    </div>
+    <div *ngSwitchCase="false">
+      <div formArrayName="keyValueList">
+        <button (click)="addList()">Add List</button>
+        <div *ngFor="let keyValue of keyValueList.controls; let i = index">
+          <div [formGroupName]="i">
+            <label>
+              key: <input type="text" [formControlName]="'key' + i">
+            </label>
+            <label>
+              value: <input type="text" [formControlName]="'value' + i">
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</form>
