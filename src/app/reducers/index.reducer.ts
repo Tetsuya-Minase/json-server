@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { fetchSuccess, getList } from '../actions/index.action';
-import { JsonData } from '../../model/JsonData';
+import { JsonData } from '../model/JsonData';
 
 export const initialState: JsonData[] = [];
 

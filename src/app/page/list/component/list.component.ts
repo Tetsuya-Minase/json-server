@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListService } from '../service/list.service';
 import { Observable } from 'rxjs';
-import { JsonData } from '../../../../model/JsonData';
+import { JsonData } from '../../../model/JsonData';
 
 @Component({
   selector: 'app-list',
