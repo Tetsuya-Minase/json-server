@@ -17,4 +17,8 @@ export class HeaderComponent {
       url: '/list'
     },
   ];
+  readonly TOP_LINK: LinkObject = {
+    text: 'JSON-SERVER',
+    url: '/'
+  };
 }
