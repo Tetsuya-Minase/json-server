@@ -3,10 +3,10 @@ import { LinkObject } from '../../../model/objects/link.object';
 
 @Component({
   // tslint:disable-next-line:component-selector
-  selector: 'atom-link',
-  templateUrl: './link.component.html',
-  styleUrls: ['./link.component.scss']
+  selector: 'atom-router-link',
+  templateUrl: './router-link.component.html',
+  styleUrls: ['./router-link.component.scss']
 })
-export class LinkComponent {
+export class RouterLinkComponent {
   @Input() linkObject: LinkObject;
 }
