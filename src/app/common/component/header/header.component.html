@@ -1,0 +1,10 @@
+<header class="header">
+  <ul class="header__link-list">
+    <li class="header__link-list__top">
+      <atom-router-link [linkObject]="TOP_LINK"></atom-router-link>
+    </li>
+    <li *ngFor="let link of LINK_LIST" class="header__link-list__item">
+      <atom-router-link [linkObject]="link"></atom-router-link>
+    </li>
+  </ul>
+</header>

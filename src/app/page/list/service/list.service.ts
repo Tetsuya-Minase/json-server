@@ -1,14 +1,14 @@
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getList, fetchList } from '../../../actions/index.action';
+import { fetchList, getList } from '../../../actions/index.action';
 import { Injectable } from '@angular/core';
-import { JsonData } from '../../../../model/JsonData';
+import { JsonData } from '../../../model/JsonData';
 
 @Injectable()
 export class ListService {
   private readonly _list$: Observable<JsonData[]>;
 
-  constructor(private store: Store<{listReducer: any}>) {
+  constructor(private store: Store<{ listReducer: any }>) {
     this._list$ = store.pipe(select('listReducer'));
   }
 
@@ -21,6 +21,6 @@ export class ListService {
   }
 
   fetchList(): void {
-    this.store.dispatch(fetchList({url: 'list'}));
+    this.store.dispatch(fetchList({ url: 'list' }));
   }
 }

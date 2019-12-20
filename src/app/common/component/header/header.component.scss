@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.header {
+  &__link-list {
+    display: flex;
+    list-style: none;
+    text-align: center;
+
+    &__top {
+      width: 200px;
+    }
+
+    &__item {
+      width: 50px;
+    }
+  }
+}

@@ -14,6 +14,7 @@ import { HttpService } from './service/http.service';
 import { HttpClientModule } from '@angular/common/http';
 import { EditModule } from './page/edit/edit.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderModule } from './common/component/header/header.module';
 
 @NgModule({
   declarations: [
@@ -26,11 +27,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TopModule,
     ListModule,
     EditModule,
-    StoreModule.forRoot({listReducer: reducer}),
+    HeaderModule,
+    StoreModule.forRoot({ listReducer: reducer }),
     EffectsModule.forRoot([FetchEffects]),
     BrowserAnimationsModule
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
