@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EditModule } from './page/edit/edit.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from './common/component/header/header.module';
+import { FooterModule } from './common/component/footer/footer.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { HeaderModule } from './common/component/header/header.module';
     ListModule,
     EditModule,
     HeaderModule,
+    FooterModule,
     StoreModule.forRoot({ listReducer: reducer }),
     EffectsModule.forRoot([FetchEffects]),
     BrowserAnimationsModule
