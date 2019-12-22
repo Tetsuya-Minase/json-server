@@ -1,0 +1,9 @@
+@charset "UTF-8";
+@import "../../css/variable";
+
+.form-error {
+  &__required {
+    background-color: $thinRed;
+    color: $red;
+  }
+}

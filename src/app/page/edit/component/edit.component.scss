@@ -1,0 +1,12 @@
+@charset "UTF-8";
+@import "../../../common/css/variable";
+
+.edit-form {
+  &__name-label {
+    width: 10px;
+  }
+
+  &__name-input {
+    border: 2px solid $gray;
+  }
+}

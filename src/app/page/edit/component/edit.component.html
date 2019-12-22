@@ -1,7 +1,8 @@
 <mat-slide-toggle (change)="changeSlideToggle($event)">RawData</mat-slide-toggle>
 <button (click)="register()">登録</button>
-<form [formGroup]="formGroup">
-  <label>name: <input type="text" formControlName="name"></label>
+<form [formGroup]="formGroup" class="edit-form">
+  <label class="edit-form__name-label">name: <input class="edit-form__name-input" formControlName="name"
+                                                    type="text"></label>
   <app-form-error [form]="name"></app-form-error>
   <ng-container [ngSwitch]="isRawData">
     <div *ngSwitchCase="true">
@@ -17,10 +18,10 @@
         <div *ngFor="let keyValue of keyValueList.controls; let i = index">
           <div [formGroupName]="i">
             <label>
-              key: <input type="text" [formControlName]="'key' + i">
+              key: <input [formControlName]="'key' + i" type="text">
             </label>
             <label>
-              value: <input type="text" [formControlName]="'value' + i">
+              value: <input [formControlName]="'value' + i" type="text">
             </label>
           </div>
         </div>
