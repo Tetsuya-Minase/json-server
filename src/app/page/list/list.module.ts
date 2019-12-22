@@ -5,11 +5,8 @@ import { ListService } from './service/list.service';
 import { ListRoutingModule } from './list-routing.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ListRoutingModule
-  ],
+  imports: [CommonModule, ListRoutingModule],
   declarations: [ListComponent],
-  providers: [ListService]
+  providers: [ListService],
 })
-export class ListModule { }
+export class ListModule {}

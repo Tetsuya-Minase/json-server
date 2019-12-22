@@ -4,7 +4,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   // tslint:disable-next-line:component-selector
   selector: 'atom-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss']
+  styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent {
   @Input() buttonText: string;
@@ -13,5 +13,4 @@ export class ButtonComponent {
   onClick() {
     this.clickEvent.emit('click');
   }
-
 }

@@ -1,4 +1,4 @@
 export type LinkObject = {
-  url: string,
-  text: string
+  url: string;
+  text: string;
 };

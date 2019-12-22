@@ -9,15 +9,20 @@ import { of } from 'rxjs';
 @Injectable()
 export class FetchEffects {
   @Effect()
-  fetchList$ = createEffect(() => this.actions$.pipe(
-    ofType(fetchList),
-    exhaustMap(action => this.httpService.fetch(action.url)
-      .pipe(
-        map((response: APIResponse) => fetchSuccess({ response })),
-        catchError(error => of(fetchError(error)))
-      ))
-  ));
+  fetchList$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(fetchList),
+      exhaustMap(action =>
+        this.httpService.fetch(action.url).pipe(
+          map((response: APIResponse) => fetchSuccess({ response })),
+          catchError(error => of(fetchError(error))),
+        ),
+      ),
+    ),
+  );
 
-  constructor(private readonly actions$: Actions, private readonly httpService: HttpService) {
-  }
+  constructor(
+    private readonly actions$: Actions,
+    private readonly httpService: HttpService,
+  ) {}
 }

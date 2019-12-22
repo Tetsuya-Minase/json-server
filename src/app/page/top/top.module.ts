@@ -4,9 +4,7 @@ import { TopComponent } from './component/top.component';
 
 @NgModule({
   declarations: [TopComponent],
-  imports: [
-    CommonModule
-  ],
-  exports: [TopComponent]
+  imports: [CommonModule],
+  exports: [TopComponent],
 })
-export class TopModule { }
+export class TopModule {}
