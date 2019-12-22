@@ -18,9 +18,7 @@ import { HeaderModule } from './common/component/header/header.module';
 import { FooterModule } from './common/component/footer/footer.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -32,10 +30,9 @@ import { FooterModule } from './common/component/footer/footer.module';
     FooterModule,
     StoreModule.forRoot({ listReducer: reducer }),
     EffectsModule.forRoot([FetchEffects]),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [HttpService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
