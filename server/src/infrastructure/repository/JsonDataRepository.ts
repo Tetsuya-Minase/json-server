@@ -1,9 +1,8 @@
-import { IJsonDataRepository } from '../../domain/repository/IJsonDataRepository';
 import { Injectable } from '@nestjs/common';
 import { HttpLibrary } from '../library/HttpLibraryMock';
 
 @Injectable()
-export class JsonDataRepository implements IJsonDataRepository {
+export class JsonDataRepository {
   constructor(private readonly httpLibrary: HttpLibrary) {
   }
 

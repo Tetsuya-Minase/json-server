@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { IJsonDataRepository } from '../domain/repository/IJsonDataRepository';
+import { JsonDataRepository } from '../infrastructure/repository/JsonDataRepository';
 
 @Injectable()
 export class JsonApiService {
-  constructor(private readonly jsonDataRepository: IJsonDataRepository) {
+  constructor(private readonly jsonDataRepository: JsonDataRepository) {
   }
 
   getJsonAll(): any[] {
