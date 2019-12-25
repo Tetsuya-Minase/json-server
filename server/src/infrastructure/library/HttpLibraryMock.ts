@@ -1,27 +1,33 @@
 import { Injectable } from '@nestjs/common';
+import { JsonDataEntity } from '../../domain/model/JsonDataEntity';
 
 @Injectable()
 export class HttpLibrary {
-  fetchAll(): any {
+  fetchAll(): JsonDataEntity {
     return {
       list: [
         {
-          name: 'hogeName',
-          data: {
-            id: 1,
-            hoge: 'hogehgoe',
-          },
+          key: 'hogeName',
+          data: [
+            {
+              id: 1,
+              hoge: 'hogehgoe'
+            }
+          ]
         },
         {
-          name: 'hugaName',
-          data: {
-            id: 2,
-            huga: 'hugahgua',
-          },
-        },
-      ],
+          key: 'hugaName',
+          data: [
+            {
+              id: 2,
+              huga: 'hugahgua'
+            }
+          ]
+        }
+      ]
     };
   }
+
   register(): any {
     return 'ok';
   }
