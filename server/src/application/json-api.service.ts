@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { JsonDataRepository } from '../infrastructure/repository/JsonDataRepository';
-import { JsonDataResponse } from '../domain/model/JsonDataResponse';
+import { JsonDataResponse } from '../domain/model/response/JsonDataResponse';
 import { JsonDataFormatter } from '../domain/service/JsonDataFormatter';
+import { JsonDataValue } from '../domain/model/object/JsonDataValue';
+import { ListRequestQuery } from '../domain/model/query/ListRequestQuery';
 
 @Injectable()
 export class JsonApiService {
@@ -9,11 +11,15 @@ export class JsonApiService {
               private readonly formatter: JsonDataFormatter) {
   }
 
-  getJsonList(start: number, result: number, isAll: boolean): JsonDataResponse {
+  getJsonList(query: ListRequestQuery): JsonDataResponse {
     const response = this.repository.fetchJsonAll();
-    return isAll
+    return query.isAll
       ? this.formatter.toAllResponse(response)
-      : this.formatter.toPagingResponse(start, result, response);
+      : this.formatter.toPagingResponse(query, response);
+  }
+
+  getJsonById(id: string): JsonDataValue {
+    return this.repository.fetchJsonById(id);
   }
 
   registerJsonData(): void {

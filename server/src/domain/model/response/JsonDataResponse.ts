@@ -1,4 +1,4 @@
-import { JsonDataValue } from './object/JsonDataValue';
+import { JsonDataValue } from '../object/JsonDataValue';
 
 export type JsonDataResponse = {
   start: number;

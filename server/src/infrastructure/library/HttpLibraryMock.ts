@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { JsonDataEntity } from '../../domain/model/JsonDataEntity';
+import { JsonDataEntity } from '../../domain/model/entity/JsonDataEntity';
+import { JsonDataValue } from '../../domain/model/object/JsonDataValue';
 
 @Injectable()
 export class HttpLibrary {
@@ -23,6 +24,18 @@ export class HttpLibrary {
               huga: 'hugahgua'
             }
           ]
+        }
+      ]
+    };
+  }
+
+  fetchById(id: string): JsonDataValue {
+    return {
+      key: id,
+      data: [
+        {
+          id: 1,
+          hoge: 'hogehgoe'
         }
       ]
     };
