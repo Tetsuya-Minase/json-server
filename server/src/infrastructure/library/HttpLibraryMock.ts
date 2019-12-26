@@ -29,9 +29,9 @@ export class HttpLibrary {
     };
   }
 
-  fetchById(id: string): JsonDataValue {
+  fetchBykey(key: string): JsonDataValue {
     return {
-      key: id,
+      key,
       data: [
         {
           id: 1,
