@@ -13,9 +13,8 @@ import { MongoDbLibrary } from '../infrastructure/db/MongoDbLibrary';
     JsonDataRepository,
     JsonDataFormatter,
     HttpLibrary,
-    MongoDbLibrary
+    MongoDbLibrary,
   ],
-  exports: [JsonDataRepository, JsonDataFormatter]
+  exports: [JsonDataRepository, JsonDataFormatter],
 })
-export class JsonApiModule {
-}
+export class JsonApiModule {}

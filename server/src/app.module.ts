@@ -13,7 +13,8 @@ import { ConfigModule } from '@nestjs/config';
     }),
     JsonApiModule,
     ConfigModule.forRoot({
-      envFilePath: '../config/local.env',
+      envFilePath: join(__dirname, '../config/local.env'),
+      isGlobal: true,
     }),
   ],
   controllers: [AppController],
