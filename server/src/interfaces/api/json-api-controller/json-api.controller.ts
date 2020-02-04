@@ -10,8 +10,7 @@ import { ListRequestQueryBuilder } from '../../../domain/model/query/ListRequest
  */
 @Controller('/api/v1/json')
 export class JsonApiController {
-  constructor(private readonly service: JsonApiService) {
-  }
+  constructor(private readonly service: JsonApiService) {}
 
   /**
    * get Json List.
@@ -21,13 +20,17 @@ export class JsonApiController {
    */
   @Get()
   @HttpCode(HttpStatusCode.OK)
-  getJsonList(@Param('start') start: number, @Param('result') result: number, @Param('isAll') istAll: boolean): JsonDataResponse {
+  async getJsonList(
+    @Param('start') start: number,
+    @Param('result') result: number,
+    @Param('isAll') istAll: boolean,
+  ): Promise<JsonDataResponse> {
     const requestQuery = new ListRequestQueryBuilder()
       .setStart(start)
       .setResult(result)
       .setIsAll(istAll)
       .build();
-    return this.service.getJsonList(requestQuery);
+    return await this.service.getJsonList(requestQuery);
   }
 
   /**
@@ -42,9 +45,10 @@ export class JsonApiController {
 
   @Put(':id')
   @HttpCode(HttpStatusCode.NO_CONTENT)
-  registerJsonData(@Param('id') id: string, @Body() body: JsonDataValue): void {
-    console.log('put');
-    this.service.registerJsonData();
-    return;
+  async registerJsonData(
+    @Param('id') id: string,
+    @Body() body: JsonDataValue,
+  ): Promise<void> {
+    await this.service.registerJsonData(body);
   }
 }

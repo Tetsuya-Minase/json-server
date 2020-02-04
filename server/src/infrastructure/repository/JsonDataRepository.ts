@@ -8,15 +8,14 @@ import { JsonDataValue } from '../../domain/model/object/JsonDataValue';
  */
 @Injectable()
 export class JsonDataRepository {
-  constructor(private readonly httpLibrary: HttpLibrary) {
-  }
+  constructor(private readonly httpLibrary: HttpLibrary) {}
 
   /**
    * fetch json list.
    * @return {@link JsonDataValue}
    */
-  fetchJsonAll(): JsonDataEntity {
-    return this.httpLibrary.fetchAll();
+  async fetchJsonAll(): Promise<JsonDataEntity> {
+    return await this.httpLibrary.fetchAll();
   }
 
   /**
@@ -25,10 +24,13 @@ export class JsonDataRepository {
    * @return {@link JsonDataValue}
    */
   fetchJsonByKey(key: string): JsonDataValue {
-    return this.httpLibrary.fetchBykey(key);
+    return this.httpLibrary.fetchByKey(key);
   }
 
-  registerJson(): void {
-    this.httpLibrary.register();
+  /**
+   * register Json Data.
+   */
+  async registerJson(jsonData: JsonDataValue): Promise<void> {
+    await this.httpLibrary.register(jsonData);
   }
 }

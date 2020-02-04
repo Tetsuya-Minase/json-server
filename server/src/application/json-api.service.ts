@@ -10,17 +10,18 @@ import { ListRequestQuery } from '../domain/model/query/ListRequestQuery';
  */
 @Injectable()
 export class JsonApiService {
-  constructor(private readonly repository: JsonDataRepository,
-              private readonly formatter: JsonDataFormatter) {
-  }
+  constructor(
+    private readonly repository: JsonDataRepository,
+    private readonly formatter: JsonDataFormatter,
+  ) {}
 
   /**
    * get Json data list.
    * @param query search condition.
    * @return {@link JsonDataResponse}
    */
-  getJsonList(query: ListRequestQuery): JsonDataResponse {
-    const response = this.repository.fetchJsonAll();
+  async getJsonList(query: ListRequestQuery): Promise<JsonDataResponse> {
+    const response = await this.repository.fetchJsonAll();
     return query.isAll
       ? this.formatter.toAllResponse(response)
       : this.formatter.toPagingResponse(query, response);
@@ -34,8 +35,10 @@ export class JsonApiService {
     return this.repository.fetchJsonByKey(key);
   }
 
-  registerJsonData(): void {
-    this.repository.registerJson();
+  /**
+   * Register Json Data.
+   */
+  async registerJsonData(jsonData: JsonDataValue): Promise<void> {
+    await this.repository.registerJson(jsonData);
   }
-
 }

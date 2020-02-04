@@ -1,6 +1,7 @@
 import { connect, Db } from 'mongodb';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { JsonDataValue } from '../../domain/model/object/JsonDataValue';
 
 @Injectable()
 export class MongoDbLibrary {
@@ -17,14 +18,25 @@ export class MongoDbLibrary {
       .catch(err => console.error('エラーだよ', err));
   }
 
-  async get() {
-    this.dbClient
+  async get(): Promise<any[]> {
+    return await this.dbClient
       .collection('json')
       .find()
-      .forEach(item => console.log('item', item));
+      .toArray();
   }
 
-  async registerOne() {
-    // this.dbClient.collection('json').insertOne();
+  async registerOne(data: JsonDataValue): Promise<void> {
+    const registered = await this.dbClient
+      .collection('json')
+      .findOne({ key: data.key });
+    // 登録済みならupdate
+    if (registered) {
+      await this.dbClient
+        .collection('json')
+        .updateOne({ key: data.key }, { $set: { data } });
+    } else {
+      const registerData = { ...data };
+      await this.dbClient.collection('json').insertOne(registerData);
+    }
   }
 }

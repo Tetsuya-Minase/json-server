@@ -5,48 +5,53 @@ import { MongoDbLibrary } from '../db/MongoDbLibrary';
 
 @Injectable()
 export class HttpLibrary {
-  constructor(private readonly mongoDb: MongoDbLibrary) {
-  }
+  constructor(private readonly mongoDb: MongoDbLibrary) {}
 
-  fetchAll(): JsonDataEntity {
-    this.mongoDb.get();
+  async fetchAll(): Promise<JsonDataEntity> {
+    const list = await this.mongoDb.get();
+    console.log('list: ', list);
     return {
-      list: [
-        {
-          key: 'hogeName',
-          data: [
-            {
-              id: 1,
-              hoge: 'hogehgoe'
-            }
-          ]
-        },
-        {
-          key: 'hugaName',
-          data: [
-            {
-              id: 2,
-              huga: 'hugahgua'
-            }
-          ]
-        }
-      ]
+      list,
     };
+    // return {
+    //   list: [
+    //     {
+    //       key: 'hogeName',
+    //       data: [
+    //         {
+    //           id: 1,
+    //           hoge: 'hogehgoe',
+    //         },
+    //       ],
+    //     },
+    //     {
+    //       key: 'hugaName',
+    //       data: [
+    //         {
+    //           id: 2,
+    //           huga: 'hugahgua',
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // };
   }
 
-  fetchBykey(key: string): JsonDataValue {
+  fetchByKey(key: string): JsonDataValue {
     return {
       key,
       data: [
         {
           id: 1,
-          hoge: 'hogehgoe'
-        }
-      ]
+          hoge: 'hogehgoe',
+        },
+      ],
     };
   }
 
-  register(): any {
+  async register(jsonData: JsonDataValue) {
+    const result = await this.mongoDb.registerOne(jsonData);
+    console.log('result', result);
     return 'ok';
   }
 }
