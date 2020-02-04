@@ -13,10 +13,10 @@ export class JsonApiController {
   constructor(private readonly service: JsonApiService) {}
 
   /**
-   * get Json List.
+   * getAll Json List.
    * @param start start index.
    * @param result result count.
-   * @param istAll get all data.
+   * @param istAll getAll all data.
    */
   @Get()
   @HttpCode(HttpStatusCode.OK)
@@ -34,7 +34,7 @@ export class JsonApiController {
   }
 
   /**
-   * get Json Data by key.
+   * getAll Json Data by key.
    * @param key json key.
    */
   @Get(':key')

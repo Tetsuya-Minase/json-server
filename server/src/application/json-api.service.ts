@@ -16,7 +16,7 @@ export class JsonApiService {
   ) {}
 
   /**
-   * get Json data list.
+   * getAll Json data list.
    * @param query search condition.
    * @return {@link JsonDataResponse}
    */
@@ -28,10 +28,10 @@ export class JsonApiService {
   }
 
   /**
-   * get Json data by key.
+   * getAll Json data by key.
    * @param key
    */
-  getJsonByKey(key: string): JsonDataValue {
+  async getJsonByKey(key: string): Promise<JsonDataValue> {
     return this.repository.fetchJsonByKey(key);
   }
 

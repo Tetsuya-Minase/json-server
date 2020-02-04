@@ -18,11 +18,15 @@ export class MongoDbLibrary {
       .catch(err => console.error('エラーだよ', err));
   }
 
-  async get(): Promise<any[]> {
+  async getAll<T = any>(): Promise<T[]> {
     return await this.dbClient
       .collection('json')
-      .find()
+      .find<T>()
       .toArray();
+  }
+
+  async getByKey<T = any>(key: string): Promise<T> {
+    return await this.dbClient.collection('join').findOne<T>({ key });
   }
 
   async registerOne(data: JsonDataValue): Promise<void> {

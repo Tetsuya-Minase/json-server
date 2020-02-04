@@ -1,5 +1,5 @@
-import { JsonDataValue } from '../object/JsonDataValue';
-
 export type JsonDataEntity = {
-  list: Array<JsonDataValue>;
+  _id: string;
+  key: string;
+  data: Array<any>;
 };

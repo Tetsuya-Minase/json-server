@@ -1,21 +1,21 @@
 import { Injectable } from '@nestjs/common';
-import { HttpLibrary } from '../library/HttpLibraryMock';
 import { JsonDataEntity } from '../../domain/model/entity/JsonDataEntity';
 import { JsonDataValue } from '../../domain/model/object/JsonDataValue';
+import { MongoDbLibrary } from '../library/MongoDbLibrary';
 
 /**
  * Json Data Repository
  */
 @Injectable()
 export class JsonDataRepository {
-  constructor(private readonly httpLibrary: HttpLibrary) {}
+  constructor(private readonly dbLibrary: MongoDbLibrary) {}
 
   /**
    * fetch json list.
    * @return {@link JsonDataValue}
    */
-  async fetchJsonAll(): Promise<JsonDataEntity> {
-    return await this.httpLibrary.fetchAll();
+  async fetchJsonAll(): Promise<JsonDataEntity[]> {
+    return await this.dbLibrary.getAll<JsonDataEntity>();
   }
 
   /**
@@ -23,14 +23,14 @@ export class JsonDataRepository {
    * @param key json key
    * @return {@link JsonDataValue}
    */
-  fetchJsonByKey(key: string): JsonDataValue {
-    return this.httpLibrary.fetchByKey(key);
+  async fetchJsonByKey(key: string): Promise<JsonDataEntity> {
+    return this.dbLibrary.getByKey<JsonDataEntity>(key);
   }
 
   /**
    * register Json Data.
    */
   async registerJson(jsonData: JsonDataValue): Promise<void> {
-    await this.httpLibrary.register(jsonData);
+    await this.dbLibrary.registerOne(jsonData);
   }
 }
