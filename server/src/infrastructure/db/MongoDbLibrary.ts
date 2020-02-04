@@ -1,13 +1,16 @@
 import { connect, Db } from 'mongodb';
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class MongoDbLibrary {
   private dbClient: Db;
 
-  constructor() {
-    // TODO: URLのハードコードやめる
-    connect('', { useUnifiedTopology: true })
+  constructor(private readonly configService: ConfigService) {
+    connect(
+      this.configService.get<string>('URL'),
+      { useUnifiedTopology: true },
+    )
       .then(res => {
         this.dbClient = res.db();
       })
@@ -15,8 +18,10 @@ export class MongoDbLibrary {
   }
 
   async get() {
-    this.dbClient.collection('json')
-      .find().forEach(item => console.log('item', item));
+    this.dbClient
+      .collection('json')
+      .find()
+      .forEach(item => console.log('item', item));
   }
 
   async registerOne() {
