@@ -6,10 +6,10 @@ import { JsonDataValue } from '../../../domain/model/object/JsonDataValue';
 import { ListRequestQueryBuilder } from '../../../domain/model/query/ListRequestQueryBuilder';
 
 /**
- * JsonApiController for web app.
+ * JsonController for web app.
  */
 @Controller('/api/v1/json')
-export class JsonApiController {
+export class JsonController {
   constructor(private readonly service: JsonApiService) {}
 
   /**
@@ -39,8 +39,8 @@ export class JsonApiController {
    */
   @Get(':key')
   @HttpCode(HttpStatusCode.OK)
-  getById(@Param('key') key: string): JsonDataValue {
-    return this.service.getJsonByKey(key);
+  async getById(@Param('key') key: string): Promise<JsonDataValue> {
+    return await this.service.getJsonByKey(key);
   }
 
   @Put(':id')

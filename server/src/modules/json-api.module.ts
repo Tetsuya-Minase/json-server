@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { JsonApiController } from '../interfaces/api/json-api-controller/json-api.controller';
+import { JsonController } from '../interfaces/api/json-controller/JsonController';
 import { JsonDataRepository } from '../infrastructure/repository/JsonDataRepository';
 import { JsonApiService } from '../application/json-api.service';
 import { JsonDataFormatter } from '../domain/service/JsonDataFormatter';
 import { MongoDbLibrary } from '../infrastructure/library/MongoDbLibrary';
 
 @Module({
-  controllers: [JsonApiController],
+  controllers: [JsonController],
   providers: [
     JsonApiService,
     JsonDataRepository,
