@@ -29,7 +29,7 @@ export class JsonDataFormatter {
   }
 
   /**
-   * 全件取得
+   * 複数件変換
    * @param entities 取得結果
    */
   toAllResponse(entities: JsonDataEntity[]): JsonDataResponse {
@@ -38,6 +38,13 @@ export class JsonDataFormatter {
       allCount: entities.length,
       results: entities.length,
       list: entities.map(entity => ({ key: entity.key, data: entity.data })),
+    };
+  }
+
+  toResponse(entity: JsonDataEntity): JsonDataValue {
+    return {
+      key: entity.key,
+      data: entity.data,
     };
   }
 
