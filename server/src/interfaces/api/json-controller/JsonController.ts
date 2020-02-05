@@ -6,45 +6,49 @@ import { JsonDataValue } from '../../../domain/model/object/JsonDataValue';
 import { ListRequestQueryBuilder } from '../../../domain/model/query/ListRequestQueryBuilder';
 
 /**
- * JsonApiController for web app.
+ * JsonController for web app.
  */
 @Controller('/api/v1/json')
-export class JsonApiController {
-  constructor(private readonly service: JsonApiService) {
-  }
+export class JsonController {
+  constructor(private readonly service: JsonApiService) {}
 
   /**
-   * get Json List.
+   * getAll Json List.
    * @param start start index.
    * @param result result count.
-   * @param istAll get all data.
+   * @param istAll getAll all data.
    */
   @Get()
   @HttpCode(HttpStatusCode.OK)
-  getJsonList(@Param('start') start: number, @Param('result') result: number, @Param('isAll') istAll: boolean): JsonDataResponse {
+  async getJsonList(
+    @Param('start') start: number,
+    @Param('result') result: number,
+    @Param('isAll') istAll: boolean,
+  ): Promise<JsonDataResponse> {
     const requestQuery = new ListRequestQueryBuilder()
       .setStart(start)
       .setResult(result)
       .setIsAll(istAll)
       .build();
-    return this.service.getJsonList(requestQuery);
+    return await this.service.getJsonList(requestQuery);
   }
 
   /**
-   * get Json Data by key.
+   * getAll Json Data by key.
    * @param key json key.
    */
   @Get(':key')
   @HttpCode(HttpStatusCode.OK)
-  getById(@Param('key') key: string): JsonDataValue {
-    return this.service.getJsonByKey(key);
+  async getById(@Param('key') key: string): Promise<JsonDataValue> {
+    return await this.service.getJsonByKey(key);
   }
 
   @Put(':id')
   @HttpCode(HttpStatusCode.NO_CONTENT)
-  registerJsonData(@Param('id') id: string, @Body() body: JsonDataValue): void {
-    console.log('put');
-    this.service.registerJsonData();
-    return;
+  async registerJsonData(
+    @Param('id') id: string,
+    @Body() body: JsonDataValue,
+  ): Promise<void> {
+    await this.service.registerJsonData(body);
   }
 }

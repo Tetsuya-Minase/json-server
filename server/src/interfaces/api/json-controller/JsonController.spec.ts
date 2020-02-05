@@ -1,17 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { JsonApiController } from './json-api.controller';
+import { JsonController } from './JsonController';
 import { JsonApiService } from '../../../application/json-api.service';
 
 describe('AppController', () => {
-  let appController: JsonApiController;
+  let appController: JsonController;
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
-      controllers: [JsonApiController],
+      controllers: [JsonController],
       providers: [JsonApiService],
     }).compile();
 
-    appController = app.get<JsonApiController>(JsonApiController);
+    appController = app.get<JsonController>(JsonController);
   });
 
   describe('root', () => {
