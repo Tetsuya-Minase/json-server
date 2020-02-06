@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { JsonDataEntity } from '../../domain/model/entity/JsonDataEntity';
-import { JsonDataValue } from '../../domain/model/object/JsonDataValue';
 import { MongoDbLibrary } from '../library/MongoDbLibrary';
 
 /**
@@ -30,7 +29,11 @@ export class JsonDataRepository {
   /**
    * register Json Data.
    */
-  async registerJson(jsonData: JsonDataValue): Promise<void> {
-    await this.dbLibrary.registerOne(jsonData);
+  async registerJson(entity: JsonDataEntity): Promise<void> {
+    await this.dbLibrary.registerOne(entity);
+  }
+
+  async deleteAll(): Promise<void> {
+    await this.dbLibrary.deleteAll();
   }
 }

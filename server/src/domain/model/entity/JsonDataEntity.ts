@@ -1,5 +1,5 @@
 export type JsonDataEntity = {
-  _id: string;
+  _id?: string;
   key: string;
-  data: Array<any>;
+  data: any;
 };

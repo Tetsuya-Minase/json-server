@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { JsonDataRepository } from '../infrastructure/repository/JsonDataRepository';
-import { JsonDataResponse } from '../domain/model/response/JsonDataResponse';
+import { JsonListResponse } from '../domain/model/response/JsonDataResponse';
 import { JsonDataFormatter } from '../domain/service/JsonDataFormatter';
 import { JsonDataValue } from '../domain/model/object/JsonDataValue';
 import { ListRequestQuery } from '../domain/model/query/ListRequestQuery';
@@ -18,9 +18,9 @@ export class JsonApiService {
   /**
    * getAll Json data list.
    * @param query search condition.
-   * @return {@link JsonDataResponse}
+   * @return {@link JsonListResponse}
    */
-  async getJsonList(query: ListRequestQuery): Promise<JsonDataResponse> {
+  async getJsonList(query: ListRequestQuery): Promise<JsonListResponse> {
     const response = await this.repository.fetchJsonAll();
     return query.isAll
       ? this.formatter.toAllResponse(response)
@@ -38,7 +38,15 @@ export class JsonApiService {
   /**
    * Register Json Data.
    */
-  async registerJsonData(jsonData: JsonDataValue): Promise<void> {
-    await this.repository.registerJson(jsonData);
+  async registerJsonData(name: string, jsonData: JsonDataValue): Promise<void> {
+    const registerEntity = this.formatter.toEntity(name, jsonData);
+    await this.repository.registerJson(registerEntity);
+  }
+
+  /**
+   * delete all.
+   */
+  async deleteAll(): Promise<void> {
+    await this.repository.deleteAll();
   }
 }
