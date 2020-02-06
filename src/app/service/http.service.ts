@@ -7,6 +7,7 @@ export class HttpService {
   constructor(private readonly httpClient: HttpClient) {}
 
   fetch(url: string) {
+    console.log('fetch');
     return this.httpClient.get(`${this.baseUrl}/${url}`);
   }
 }

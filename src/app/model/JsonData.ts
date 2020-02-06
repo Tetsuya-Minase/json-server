@@ -14,6 +14,14 @@ export type JsonData = {
   data: JsonDetail;
 };
 
+export type JsonDataValue = {
+  key: string;
+  data: any;
+};
+
 export type APIResponse = {
-  list: JsonData[];
+  start: number;
+  allCount: number;
+  results: number;
+  list: Array<JsonDataValue>;
 };

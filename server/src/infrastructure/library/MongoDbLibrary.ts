@@ -1,7 +1,7 @@
 import { connect, Db } from 'mongodb';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { JsonDataValue } from '../../domain/model/object/JsonDataValue';
+import { JsonDataEntity } from '../../domain/model/entity/JsonDataEntity';
 
 @Injectable()
 export class MongoDbLibrary {
@@ -29,7 +29,7 @@ export class MongoDbLibrary {
     return await this.dbClient.collection('join').findOne<T>({ key });
   }
 
-  async registerOne(data: JsonDataValue): Promise<void> {
+  async registerOne(data: JsonDataEntity): Promise<void> {
     const registered = await this.dbClient
       .collection('json')
       .findOne({ key: data.key });
@@ -42,5 +42,9 @@ export class MongoDbLibrary {
       const registerData = { ...data };
       await this.dbClient.collection('json').insertOne(registerData);
     }
+  }
+
+  async deleteAll(): Promise<void> {
+    await this.dbClient.collection('json').deleteMany({});
   }
 }

@@ -1,11 +1,5 @@
 <button (click)="onClick()">テスト</button>
 <ul>
-  <li>
-    <details>
-      <summary>hoge</summary>
-      value
-    </details>
-  </li>
   <li *ngFor="let item of list$ | async">
     <details>
       <summary>{{item.name}}</summary>

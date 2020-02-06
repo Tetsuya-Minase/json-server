@@ -1,7 +1,15 @@
-import { Body, Controller, Get, HttpCode, Param, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  Put,
+} from '@nestjs/common';
 import { JsonApiService } from '../../../application/json-api.service';
 import { HttpStatusCode } from '../../../domain/constants/HttpStatusCode';
-import { JsonDataResponse } from '../../../domain/model/response/JsonDataResponse';
+import { JsonListResponse } from '../../../domain/model/response/JsonDataResponse';
 import { JsonDataValue } from '../../../domain/model/object/JsonDataValue';
 import { ListRequestQueryBuilder } from '../../../domain/model/query/ListRequestQueryBuilder';
 
@@ -24,7 +32,7 @@ export class JsonController {
     @Param('start') start: number,
     @Param('result') result: number,
     @Param('isAll') istAll: boolean,
-  ): Promise<JsonDataResponse> {
+  ): Promise<JsonListResponse> {
     const requestQuery = new ListRequestQueryBuilder()
       .setStart(start)
       .setResult(result)
@@ -43,12 +51,18 @@ export class JsonController {
     return await this.service.getJsonByKey(key);
   }
 
-  @Put(':id')
+  @Put(':name')
   @HttpCode(HttpStatusCode.NO_CONTENT)
   async registerJsonData(
-    @Param('id') id: string,
+    @Param('name') name: string,
     @Body() body: JsonDataValue,
   ): Promise<void> {
-    await this.service.registerJsonData(body);
+    await this.service.registerJsonData(name, body);
+  }
+
+  @Delete()
+  @HttpCode(HttpStatusCode.NO_CONTENT)
+  async deleteAll(): Promise<void> {
+    await this.service.deleteAll();
   }
 }

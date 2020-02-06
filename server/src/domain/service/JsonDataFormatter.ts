@@ -1,5 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { JsonDataResponse } from '../model/response/JsonDataResponse';
+import {
+  JsonDataResponse,
+  JsonListResponse,
+} from '../model/response/JsonDataResponse';
 import { JsonDataEntity } from '../model/entity/JsonDataEntity';
 import { JsonDataValue } from '../model/object/JsonDataValue';
 import { ListRequestQuery } from '../model/query/ListRequestQuery';
@@ -14,7 +17,7 @@ export class JsonDataFormatter {
   toPagingResponse(
     query: ListRequestQuery,
     entities: JsonDataEntity[],
-  ): JsonDataResponse {
+  ): JsonListResponse {
     const list = this.paging(
       query.start,
       query.result,
@@ -32,7 +35,7 @@ export class JsonDataFormatter {
    * 複数件変換
    * @param entities 取得結果
    */
-  toAllResponse(entities: JsonDataEntity[]): JsonDataResponse {
+  toAllResponse(entities: JsonDataEntity[]): JsonListResponse {
     return {
       start: 1,
       allCount: entities.length,
@@ -41,10 +44,17 @@ export class JsonDataFormatter {
     };
   }
 
-  toResponse(entity: JsonDataEntity): JsonDataValue {
+  toResponse(entity: JsonDataEntity): JsonDataResponse {
     return {
       key: entity.key,
       data: entity.data,
+    };
+  }
+
+  toEntity(key: string, data: JsonDataValue): JsonDataEntity {
+    return {
+      key,
+      data: data.data,
     };
   }
 
