@@ -5,17 +5,8 @@ import { RouterLinkComponent } from '../../atoms/router-link/router-link.compone
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    RouterLinkComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule
-  ],
-  exports: [
-    HeaderComponent
-  ]
+  declarations: [HeaderComponent, RouterLinkComponent],
+  imports: [CommonModule, RouterModule],
+  exports: [HeaderComponent],
 })
-export class HeaderModule {
-}
+export class HeaderModule {}

@@ -8,18 +8,14 @@ import { FormErrorComponent } from '../../common/component/form-error/form-error
 import { EditService } from './service/edit.service';
 
 @NgModule({
-  declarations: [
-    EditComponent,
-    FormErrorComponent
-  ],
+  declarations: [EditComponent, FormErrorComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     EditRoutingModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
   ],
-  providers: [EditService]
+  providers: [EditService],
 })
-export class EditModule {
-}
+export class EditModule {}

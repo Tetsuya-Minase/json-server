@@ -5,7 +5,7 @@ import { LinkObject } from '../../../model/objects/link.object';
   // tslint:disable-next-line:component-selector
   selector: 'atom-router-link',
   templateUrl: './router-link.component.html',
-  styleUrls: ['./router-link.component.scss']
+  styleUrls: ['./router-link.component.scss'],
 })
 export class RouterLinkComponent {
   @Input() linkObject: LinkObject;
