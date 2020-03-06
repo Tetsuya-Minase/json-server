@@ -1,0 +1,20 @@
+@charset "UTF-8";
+@import "src/app/common/css/variable";
+
+.button {
+  width: 100px;
+  height: 50px;
+  background-color: $button-bg-color;
+  border: $button-border solid 1px;
+  color: $button-color;
+  font-size: 1rem;
+}
+
+.button--small {
+  width: 75px;
+  height: 30px;
+}
+
+.button--large {
+  width: 200px;
+}
