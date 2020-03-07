@@ -6,6 +6,7 @@ import { EditRoutingModule } from './edit-routing.module';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormErrorComponent } from '../../common/component/form-error/form-error.component';
 import { EditService } from './service/edit.service';
+import { ButtonModule } from '../../common/atoms/button/button.module';
 
 @NgModule({
   declarations: [EditComponent, FormErrorComponent],
@@ -15,6 +16,7 @@ import { EditService } from './service/edit.service';
     ReactiveFormsModule,
     EditRoutingModule,
     MatSlideToggleModule,
+    ButtonModule,
   ],
   providers: [EditService],
 })

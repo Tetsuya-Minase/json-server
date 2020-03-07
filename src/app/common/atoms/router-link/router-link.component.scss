@@ -1,8 +1,7 @@
 @charset "UTF-8";
-@import "src/app/common/atoms/css/variable";
+@import "src/app/common/css/_variable";
 
-a {
-  &:visited {
-    color: $black;
-  }
+a:visited {
+  color: purple;
 }
+
