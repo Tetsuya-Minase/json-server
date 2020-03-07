@@ -9,7 +9,7 @@ $button-border-primary: #007bff;
 $button-font-primary: #fff;
 
 .button {
-  width: 100px;
+  width: 150px;
   height: 50px;
   background-color: $button-bg;
   border: 1px solid $button-border;
@@ -31,5 +31,5 @@ $button-font-primary: #fff;
 }
 
 .button--large {
-  width: 200px;
+  width: 300px;
 }
