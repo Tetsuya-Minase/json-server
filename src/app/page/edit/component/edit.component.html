@@ -21,7 +21,7 @@
     </div>
     <ng-template #KeyValue>
       <div formArrayName="keyValueList">
-        <atom-button class="form__key-value__button" buttonText="Add List" (clickEvent)="addList()"></atom-button>
+        <atom-button class="form__key-value__button" size="small" buttonText="Add List" (clickEvent)="addList()"></atom-button>
         <div *ngFor="let keyValue of keyValueList.controls; let i = index">
           <div class="form__key-value__data" [formGroupName]="i">
             <label>
