@@ -7,7 +7,7 @@
     "experimentalDecorators": true,
     "target": "esnext",
     "sourceMap": true,
-    "outDir": "../dist",
+    "outDir": "../public",
     "baseUrl": "./",
     "incremental": true
   },
