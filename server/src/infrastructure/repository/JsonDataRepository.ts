@@ -1,13 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { JsonDataEntity } from '../../domain/model/entity/JsonDataEntity';
 import { MongoDbLibrary } from '../library/MongoDbLibrary';
+import { FireStoreLibrary } from '../library/FireStoreLibrary';
 
 /**
  * Json Data Repository
  */
 @Injectable()
 export class JsonDataRepository {
-  constructor(private readonly dbLibrary: MongoDbLibrary) {}
+  constructor(
+    private readonly dbLibrary: MongoDbLibrary,
+    private readonly fireStoreLibrary: FireStoreLibrary,
+  ) {}
 
   /**
    * fetch json list.

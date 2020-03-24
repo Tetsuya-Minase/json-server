@@ -4,6 +4,7 @@ import { JsonDataRepository } from '../infrastructure/repository/JsonDataReposit
 import { JsonApiService } from '../application/json-api.service';
 import { JsonDataFormatter } from '../domain/service/JsonDataFormatter';
 import { MongoDbLibrary } from '../infrastructure/library/MongoDbLibrary';
+import { FireStoreLibrary } from '../infrastructure/library/FireStoreLibrary';
 
 @Module({
   controllers: [JsonController],
@@ -12,6 +13,7 @@ import { MongoDbLibrary } from '../infrastructure/library/MongoDbLibrary';
     JsonDataRepository,
     JsonDataFormatter,
     MongoDbLibrary,
+    FireStoreLibrary,
   ],
   exports: [JsonDataRepository, JsonDataFormatter],
 })
